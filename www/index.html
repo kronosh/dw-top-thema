@@ -3,27 +3,90 @@
 <head>
     <meta charset="utf-8">
     <title>My AngularJS App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="app/css/app.css"/>
 </head>
 <body>
-<ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-</ul>
+<div ng-controller="RssCtrl">
+    <form>
+        <button class="btn" ng-click="retrieve()">Get</button>
 
-<div ng-view></div>
+        <ul>
+            <li ng-repeat="item in rssResult.value.items">
+                <b>{{item.title}}</b>
+            </li>
+        </ul>
 
-<div>Angular seed app: v<span app-version></span></div>
+    </form>
+
+    <div id="wrapper">
+        <section>
+            <div id="demo1-wrapper">
+                <div id="demo1" class="clearfix">
+
+                    <!-- Card 1 -->
+                    <div class="card" id="card1">
+                        <div class="front">Tap to flip</div>
+                        <div class="back">Tap to flip</div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card" id="card2">
+                        <div class="front">Tap to flip</div>
+                        <div class="back">Tap to flip</div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card" id="card3">
+                        <div class="front">Tap to flip</div>
+                        <div class="back">Tap to flip</div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card" id="card4">
+                        <div class="front">Tap to flip</div>
+                        <div class="back">Tap to flip</div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="card" id="card5">
+                        <div class="front">Tap to flip</div>
+                        <div class="back">Tap to flip</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
 -->
 <script src="app/lib/angular/angular.js"></script>
+<script src="app/lib/angular/angular-resource.js"></script>
+<script src="app/lib/modernizr-2.0.6.min.js"></script>
+<script src="app/lib/zepto.min.js"></script>
+<script src="app/lib/zepto.flickable.min.js"></script>
 <script src="app/js/app.js"></script>
 <script src="app/js/services.js"></script>
 <script src="app/js/controllers.js"></script>
 <script src="app/js/filters.js"></script>
 <script src="app/js/directives.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        $('#demo1').flickable({segments:5});
+
+        $('.front, .back').tap(function() {
+            var el = $(this).parent();
+            el.toggleClass('flipped')
+        });
+    });
+</script>
 </body>
 </html>
 

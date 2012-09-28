@@ -2,22 +2,12 @@
 
 /* Controllers */
 
+function RssCtrl($scope, $resource) {
+    $scope.rss = $resource('http://pipes.yahoo.com/pipes/pipe.run?_id=54f72f86176762dc83f150229028448a&:_render&:_callback',
+        {_render:'_render=json', _callback:'_callback=JSON_CALLBACK'},
+        {get:{method:'JSONP'}});
 
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
-
-
-function MyCtrl2() {
-}
-MyCtrl2.$inject = [];
-
-function PhoneListCtrl($scope) {
-    $scope.phones = [
-        {"name": "Nexus S",
-            "snippet": "Fast just got faster with Nexus S."},
-        {"name": "Motorola XOOM™ with Wi-Fi",
-            "snippet": "The Next, Next Generation tablet."},
-        {"name": "MOTOROLA XOOM™",
-            "snippet": "The Next, Next Generation tablet."}
-    ];
+    $scope.retrieve = function () {
+        $scope.rssResult = $scope.rss.get();
+    };
 }
